@@ -1,0 +1,67 @@
+﻿@{
+    if (TempData["ErrorMessage"] != null)
+	{
+        <br />
+            <br />
+            <br />
+		<div class="alert alert-danger">
+            
+            @TempData["ErrorMessage"]
+		</div>
+	}
+}
+
+
+<br />
+<br />
+
+
+<form method="post" >
+    <div>
+        <input type="hidden" name="DoctorId" value="@Model.Id" />
+
+        <label>Patient Name:</label>
+        <input name="PatientName" class="form-control" />
+    </div>
+
+
+
+    <div>
+        <label>Appointment Date:</label>
+        <input type="date" name="AppointmentDate" class="form-control" id="datePicker" />
+    </div>
+
+    <div>
+        <label>Appointment Time:</label>
+        <select name="AppointmentTime" class="form-control">
+            @{
+                var start = TimeSpan.FromHours(9); 
+                var end = TimeSpan.FromHours(17); 
+
+                for (var time = start; time < end; time += TimeSpan.FromMinutes(30))
+                {
+                    <option value="@time">@time.ToString(@"hh\:mm")</option>
+                }
+            }
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Book</button>
+</form>
+
+
+    <script>
+        const dateInput = document.getElementById("datePicker");
+
+        dateInput.addEventListener("input", function () {
+            const selectedDate = new Date(this.value);
+            const day = selectedDate.getDay();
+
+            if (day === 5 || day === 6) { 
+                alert("Appointments are not available on Friday or Saturday.");
+                this.value = "";
+            }
+        });
+    </script>
+
