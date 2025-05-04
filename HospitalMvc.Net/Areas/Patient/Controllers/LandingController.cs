@@ -2,8 +2,9 @@
 using HospitalMvc.Net.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalMvc.Net.Controllers
+namespace HospitalMvc.Net.Areas.Patient.Controllers
 {
+    [Area("Patient")]
     public class LandingController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,8 +20,9 @@ namespace HospitalMvc.Net.Controllers
 
             return View(doctors);
         }
-        public IActionResult CheckApp(int page=1 , int pageSize=4 , string searchQuery="")
-        {   var totalDoctors = _context.Doctors.Count();
+        public IActionResult CheckApp(int page = 1, int pageSize = 4, string searchQuery = "")
+        {
+            var totalDoctors = _context.Doctors.Count();
             var totalPages = (int)Math.Ceiling((double)totalDoctors / pageSize);
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -32,14 +34,14 @@ namespace HospitalMvc.Net.Controllers
                 {
                     TempData["ErrorMessage"] = "No doctors found matching your search criteria.";
                 }
-               
+
                 ViewBag.CurrentPage = page;
                 ViewBag.TotalPages = totalPages;
                 ViewBag.SearchQuery = searchQuery;
                 return View(filteredDoctors);
             }
 
-            
+
             var doctors = _context.Doctors
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -49,7 +51,7 @@ namespace HospitalMvc.Net.Controllers
             ViewBag.SearchQuery = searchQuery;
             return View(doctors);
         }
-        [HttpGet("/Landing/GetAppoint/{id}")]
+        [HttpGet("/Patient/Landing/GetAppoint/{id}")]
         public IActionResult GetAppoint(int id)
         {
             var doctor = _context.Doctors.Find(id);
@@ -79,7 +81,7 @@ namespace HospitalMvc.Net.Controllers
             TempData["SuccessMessage"] = "Your appointment has been made successfully wish you health .";
 
 
-            return RedirectToAction("CheckApp"); 
+            return RedirectToAction("CheckApp");
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿@{
+﻿@model Doctor
+<br />
+<br />
+<br />
+<br />
+<br />@{
     if (TempData["ErrorMessage"] != null)
 	{
         <br />
@@ -12,16 +17,16 @@
 }
 
 
-<br />
-<br />
 
 
-<form method="post" >
+
+<form method="post" style="margin-top:50px">
     <div>
         <input type="hidden" name="DoctorId" value="@Model.Id" />
 
         <label>Patient Name:</label>
         <input name="PatientName" class="form-control" />
+        <span asp-validation-for="Name">Enter A Valid Input</span>
     </div>
 
 
@@ -29,6 +34,7 @@
     <div>
         <label>Appointment Date:</label>
         <input type="date" name="AppointmentDate" class="form-control" id="datePicker" />
+		<span asp-validation-for="Appointments">Enter A Valid Input</span>
     </div>
 
     <div>

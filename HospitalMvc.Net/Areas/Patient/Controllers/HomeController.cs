@@ -2,8 +2,9 @@ using System.Diagnostics;
 using HospitalMvc.Net.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalMvc.Net.Controllers
+namespace HospitalMvc.Net.Areas.Patient.Controllers
 {
+    [Area("Patient")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -41,9 +41,9 @@ namespace HospitalMvc.Net
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Landing}/{action=Index}/{id?}")
+                pattern: "{area=Patient}/{controller=Landing}/{action=Index}/{id?}")
                 .WithStaticAssets();
-
+            app.UseStaticFiles();
             app.Run();
         }
     }

@@ -1,0 +1,25 @@
+﻿@model Doctor
+<br /><br /><br /><br />
+<div class="container my-4">
+    <h1 class="mb-4">Create Doctor</h1>
+    <form asp-action="Create" asp-controller="Home" asp-area="Manager" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Specialization" class="form-label"></label>
+            <input asp-for="Specialization" class="form-control" />
+            <span asp-validation-for="Specialization" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label name="Img" class="form-label"></label>
+            <input name="Img" class="form-control" type="file"/>
+            <span asp-validation-for="Img" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" asp-controller="Home" asp-area="Manager" class="btn btn-secondary">Back to List</a>
+	</form>
+</div>

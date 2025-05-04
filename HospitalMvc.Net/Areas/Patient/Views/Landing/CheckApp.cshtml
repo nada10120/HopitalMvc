@@ -19,6 +19,13 @@
             @TempData["ErrorMessage"]
 		</div>
     }
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
     <form method="get" action="@Url.Action("CheckApp")" class="mb-4">
         <div class="input-group">
             <input type="text" name="searchQuery" class="form-control" placeholder="Search for doctors" value="@ViewBag.Searchquery"  />
@@ -34,7 +41,7 @@
         <div class="card-body">
             <h5 class="card-title">@item.Name</h5>
             <p class="card-text">@item.Specialization</p>
-            <a href="/Landing/GetAppoint/@item.Id" class="btn btn-primary">
+            <a href="/Patient/Landing/GetAppoint/@item.Id" class="btn btn-primary">
 				Get Your Appointment
             </a>
         </div>
